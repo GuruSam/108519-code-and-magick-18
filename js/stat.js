@@ -68,6 +68,6 @@ window.renderStatistics = function (ctx, names, times) {
 
     renderText(ctx, time, barWidthGap, getY(30) + barHeightGap, '#000');
     renderBar(ctx, barWidthGap, getY(40) + barHeightGap, newBarHeight, barColor);
-    renderText(ctx, names[i], barWidthGap, getY(60) + TEXT_HEIGHT + BAR_HEIGHT, '#000');
+    renderText(ctx, names[i], barWidthGap, getY(252), '#000');
   }
 };
