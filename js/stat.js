@@ -62,7 +62,7 @@ window.renderStatistics = function (ctx, names, times) {
   for (var i = 0; i < names.length; i++) {
     var newBarHeight = (BAR_HEIGHT * times[i]) / maxTime;
     var barHeightGap = BAR_HEIGHT - newBarHeight + TEXT_HEIGHT;
-    var barWidthGap = CLOUD_X + BAR_WIDTH + (BAR_WIDTH + BAR_GAP) * i;
+    var barWidthGap = getX(40) + (BAR_WIDTH + BAR_GAP) * i;
     var barColor = names[i] === 'Вы' ? 'rgba(255, 0, 0, 1)' : getBarColor(250);
     var time = Math.ceil(times[i]);
 
