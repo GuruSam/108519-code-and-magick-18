@@ -7,19 +7,20 @@ var surnames = ['да Марья', 'Верон', 'Мирабелла', 'Валь
 var coatColors = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var eyesColors = ['black', 'red', 'blue', 'yellow', 'green'];
 
-var genNumber = function (n) {
-  return Math.floor(Math.random() * n);
+var randomArrayItem = function (arr) {
+  var i = Math.floor(Math.random() * arr.length);
+  return arr[i];
 };
 
-var genWizards = function () {
+var genWizards = function (total) {
   var arr = [];
 
-  for (var i = 0; i < WIZARD_AMOUNT; i++) {
+  for (var i = 0; i < total; i++) {
     var wizard = {};
 
-    wizard.name = names[genNumber(names.length)] + ' ' + surnames[genNumber(surnames.length)];
-    wizard.coatColor = coatColors[genNumber(coatColors.length)];
-    wizard.eyesColor = eyesColors[genNumber(eyesColors.length)];
+    wizard.name = randomArrayItem(names) + ' ' + randomArrayItem(surnames);
+    wizard.coatColor = randomArrayItem(coatColors);
+    wizard.eyesColor = randomArrayItem(eyesColors);
 
     arr.push(wizard);
   }
@@ -53,7 +54,7 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
     .querySelector('.setup-similar-item');
 
-var wizards = genWizards();
+var wizards = genWizards(WIZARD_AMOUNT);
 
 setupDialog.classList.remove('hidden');
 document.querySelector('.setup-similar').classList.remove('hidden');
