@@ -9,8 +9,7 @@ var wizardParams = {
   surnames: ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'],
   coatColors: ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'],
   eyesColors: ['black', 'red', 'blue', 'yellow', 'green'],
-  fireballColors: ['rgb(238, 72, 48)', 'rgb(48, 168, 238)', 'rgb(92, 230, 192)', 'rgb(232, 72, 213)', 'rgb(230, 232, 72)'],
-  someColors: ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848']
+  fireballColors: ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848']
 };
 
 var getRandomArrayItem = function (arr) {
@@ -136,7 +135,7 @@ wizardEyesElement.addEventListener('click', function () {
   changeColor(wizardEyesElement, wizardParams.eyesColors);
 });
 fireballElement.addEventListener('click', function () {
-  changeColor(fireballElement, wizardParams.someColors);
+  changeColor(fireballElement, wizardParams.fireballColors);
 });
 
 document.querySelector('.setup-similar').classList.remove('hidden');
