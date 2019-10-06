@@ -6,6 +6,7 @@
   var setupOpenElement = document.querySelector('.setup-open');
   var setupCloseElement = setupDialog.querySelector('.setup-close');
   var uploadElement = document.querySelector('.upload');
+  var form = setupDialog.querySelector('.setup-wizard-form');
 
   var openSetup = function () {
     setupDialog.classList.remove('hidden');
@@ -88,5 +89,15 @@
     document.addEventListener('mouseup', mouseUpHandler);
   });
 
+  var saveSuccessHandler = function () {
+    closeSetup();
+  };
+
   document.querySelector('.setup-similar').classList.remove('hidden');
+
+  form.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+
+    window.backend.save(new FormData(form), saveSuccessHandler, window.backend.errorHandler);
+  });
 })();

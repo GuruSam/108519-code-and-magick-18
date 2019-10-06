@@ -17,16 +17,12 @@
     fireballColors: ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848']
   };
 
-  var genWizards = function (params) {
+  var getWizards = function (wizards) {
     var arr = [];
 
-    for (var i = 0; i < params.amount; i++) {
-      var wizard = {};
-
-      wizard.name = window.util.getRandomArrayItem(params.names) + ' ' + window.util.getRandomArrayItem(params.surnames);
-      wizard.coatColor = window.util.getRandomArrayItem(params.coatColors);
-      wizard.eyesColor = window.util.getRandomArrayItem(params.eyesColors);
-
+    for (var i = 0; i < 4; i++) {
+      var wizard = window.util.getRandomArrayItem(wizards);
+      wizards.splice(wizards.indexOf(wizard), 1);
       arr.push(wizard);
     }
 
@@ -37,18 +33,18 @@
     var wizardElement = similarWizardTemplate.cloneNode(true);
 
     wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
-    wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
-    wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
+    wizardElement.querySelector('.wizard-coat').style.fill = wizard.colorCoat;
+    wizardElement.querySelector('.wizard-eyes').style.fill = wizard.colorEyes;
 
     return wizardElement;
   };
 
-  var renderWizardList = function () {
-    var wizards = genWizards(wizardParams);
+  var renderWizardList = function (wizards) {
+    var wizardList = getWizards(wizards);
     var fragment = document.createDocumentFragment();
 
-    for (var i = 0; i < wizards.length; i++) {
-      fragment.appendChild(renderWizard(wizards[i]));
+    for (var i = 0; i < wizardList.length; i++) {
+      fragment.appendChild(renderWizard(wizardList[i]));
     }
 
     similarListElement.appendChild(fragment);
@@ -85,7 +81,11 @@
     changeColor(evt.target, wizardParams);
   };
 
+  var successHandler = function (wizards) {
+    renderWizardList(wizards);
+  };
+
   wizardSetup.addEventListener('click', wizardSetupClickHandler);
 
-  renderWizardList();
+  window.backend.load(successHandler, window.backend.errorHandler);
 })();
