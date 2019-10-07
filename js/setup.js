@@ -89,15 +89,13 @@
     document.addEventListener('mouseup', mouseUpHandler);
   });
 
-  var saveSuccessHandler = function () {
-    closeSetup();
-  };
-
   document.querySelector('.setup-similar').classList.remove('hidden');
 
   form.addEventListener('submit', function (evt) {
     evt.preventDefault();
 
-    window.backend.save(new FormData(form), saveSuccessHandler, window.backend.errorHandler);
+    window.backend.save(new FormData(form), function () {
+      closeSetup();
+    });
   });
 })();

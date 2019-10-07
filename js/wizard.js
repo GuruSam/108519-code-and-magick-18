@@ -81,11 +81,9 @@
     changeColor(evt.target, wizardParams);
   };
 
-  var successHandler = function (wizards) {
-    renderWizardList(wizards);
-  };
-
   wizardSetup.addEventListener('click', wizardSetupClickHandler);
 
-  window.backend.load(successHandler, window.backend.errorHandler);
+  window.backend.load(function (wizards) {
+    renderWizardList(wizards);
+  });
 })();

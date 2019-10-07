@@ -5,7 +5,7 @@
   var LOAD_WIZARDS_URL = 'https://js.dump.academy/code-and-magick/data';
   var STATUS_OK = 200;
 
-  var save = function (data, onLoad, onError) {
+  var save = function (data, onLoad) {
     var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
     xhr.timeout = 10000;
@@ -16,20 +16,20 @@
       if (xhr.status === STATUS_OK) {
         onLoad();
       } else {
-        onError('Ошибка сохранения');
+        errorHandler('Ошибка сохранения');
       }
     });
     xhr.addEventListener('error', function () {
-      onError('Произошла ошибка соединения');
+      errorHandler('Произошла ошибка соединения');
     });
     xhr.addEventListener('timeout', function () {
-      onError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
+      errorHandler('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
     });
 
     xhr.send(data);
   };
 
-  var load = function (onLoad, onError) {
+  var load = function (onLoad) {
     var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
 
@@ -41,7 +41,7 @@
       }
     });
     xhr.addEventListener('error', function () {
-      onError('Произошла ошибка соединения');
+      errorHandler('Произошла ошибка соединения');
     });
 
     xhr.send();
