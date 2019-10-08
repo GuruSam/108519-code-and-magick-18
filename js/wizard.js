@@ -17,19 +17,6 @@
     fireballColors: ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848']
   };
 
-  var getWizards = function (wizards) {
-    var wizardList = wizards;
-    var result = [];
-
-    for (var i = 0; i < 4; i++) {
-      var wizard = window.util.getRandomArrayItem(wizardList);
-      wizardList.splice(wizardList.indexOf(wizard), 1);
-      result.push(wizard);
-    }
-
-    return result;
-  };
-
   var renderWizard = function (wizard) {
     var wizardElement = similarWizardTemplate.cloneNode(true);
 
@@ -41,7 +28,7 @@
   };
 
   var renderWizardList = function (wizards) {
-    var wizardList = getWizards(wizards);
+    var wizardList = window.util.getRandomArray(wizards, 4);
     var fragment = document.createDocumentFragment();
 
     for (var i = 0; i < wizardList.length; i++) {
