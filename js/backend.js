@@ -61,7 +61,6 @@
 
   window.backend = {
     save: save,
-    load: load,
-    errorHandler: errorHandler
+    load: load
   };
 })();

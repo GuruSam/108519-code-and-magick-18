@@ -18,15 +18,16 @@
   };
 
   var getWizards = function (wizards) {
-    var arr = [];
+    var wizardList = wizards;
+    var result = [];
 
     for (var i = 0; i < 4; i++) {
-      var wizard = window.util.getRandomArrayItem(wizards);
-      wizards.splice(wizards.indexOf(wizard), 1);
-      arr.push(wizard);
+      var wizard = window.util.getRandomArrayItem(wizardList);
+      wizardList.splice(wizardList.indexOf(wizard), 1);
+      result.push(wizard);
     }
 
-    return arr;
+    return result;
   };
 
   var renderWizard = function (wizard) {
