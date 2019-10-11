@@ -1,11 +1,9 @@
 'use strict';
 
 (function () {
-  var coatColor;
-  var eyesColor;
   var lastTimeout;
 
-  var getRank = function (wizard) {
+  var getRank = function (wizard, coatColor, eyesColor) {
     var rank = 0;
 
     if (wizard.colorCoat === coatColor) {
@@ -20,8 +18,8 @@
 
   var updateWizards = function () {
     var wizards = window.wizard.similar.slice();
-    coatColor = document.querySelector('input[name="coat-color"]').value;
-    eyesColor = document.querySelector('input[name="eyes-color"]').value;
+    var coatColor = document.querySelector('input[name="coat-color"]').value;
+    var eyesColor = document.querySelector('input[name="eyes-color"]').value;
 
     if (lastTimeout) {
       clearTimeout(lastTimeout);
@@ -29,8 +27,7 @@
 
     lastTimeout = setTimeout(function () {
       wizards.sort(function (left, right) {
-        var rankDiff = getRank(right) - getRank(left);
-        return rankDiff;
+        return getRank(right, coatColor, eyesColor) - getRank(left, coatColor, eyesColor);
       });
 
       window.wizard.renderList(wizards);
